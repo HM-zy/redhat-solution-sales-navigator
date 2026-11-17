@@ -15,6 +15,7 @@ import {
   History,
   Package
 } from 'lucide-react';
+import RagAssistant from './RagAssistant';
 
 type Scale = '' | '<10' | '10-50' | '50+';
 type Version = '' | 'v7' | 'v8' | 'v9';
@@ -534,6 +535,11 @@ export default function RedHatSalesNavigator() {
             )}
           </div>
         </section>
+
+        {/* RAG 어시스턴트: 체크리스트·추천 아래 전체 폭 */}
+        <div className="lg:col-span-2">
+          <RagAssistant />
+        </div>
       </main>
     </div>
   );

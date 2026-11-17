@@ -7,16 +7,43 @@
 - RHEL 서버 규모 및 운영 관련 6개 질문
 - 조건에 따른 Upsell / Cross-sell 솔루션 추천
 - 각 추천의 근거와 한국어 대화 스크립트 표시
+- Red Hat 공식문서 RAG 어시스턴트: 브라우저에서 바로 질문하고 근거 `[doc_id]`와 가드레일 거절 사유 확인
 - 입력 초기화
 
 ## 실행
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:5173
 ```
 
 프로덕션 빌드는 `npm run build`로 생성합니다.
+
+### RAG 어시스턴트까지 함께 띄우기
+
+화면 아래 'Red Hat 공식문서 RAG 어시스턴트' 카드는 로컬 API 서버(`rag/server.py`, 포트 8000)를 `/api` 프록시로 호출합니다. 터미널 두 개로 실행합니다.
+
+```bash
+# 터미널 1 — RAG API (표준 라이브러리만 사용, requirements에 추가 패키지 없음)
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python -m rag.build_corpus      # 공식문서 최초 1회 수집
+.venv/bin/python -m rag.server            # http://localhost:8000
+
+# 터미널 2 — 웹
+npm install
+npm run dev                               # http://localhost:5173  (→ /api 는 8000으로 프록시)
+```
+
+답변 생성을 쓰려면 터미널 1에서 `export ANTHROPIC_API_KEY=sk-ant-...` 후 서버를 띄웁니다. 키가 없어도 검색과 가드레일 거절(가격·범위 밖)은 그대로 동작하고, 답변이 필요한 질문에만 키 설정 안내가 옵니다.
+
+카드 우측 상단 배지가 서버·코퍼스·API 키 상태를 보여줍니다. 서버가 꺼져 있으면 무엇을 실행해야 하는지 카드 안에 표시되고, 옆의 새로고침 아이콘으로 다시 확인할 수 있습니다.
+
+| 엔드포인트 | 요청 | 응답 |
+|---|---|---|
+| `GET /api/health` | — | `{ok, corpus_ready, has_api_key, chunks, model}` |
+| `POST /api/ask` | `{"question": "..."}` | `{status, reason, answer, citations, sources, retrieved, top_score}` |
+
+`status`는 `answered`(답변) / `refused`(가드레일 거절, `reason` = `pricing`·`off_domain`·`low_evidence`·`insufficient_context`·`no_cited_sentences`) / `unavailable`(코퍼스·키 없음)입니다. `retrieved`에는 검색된 청크의 제목·URL·BM25 점수가 담깁니다.
 
 ## 기술 스택
 
@@ -34,9 +61,12 @@ rag/text.py           영어 단어 + 한글 2-gram 토크나이저
 rag/aliases.py        한국어 영업 용어 → 영문 제품 용어 별칭 맵
 rag/guardrails.py     사전 차단(가격·범위 밖·근거 부족) / 사후 검증(인용 누락·가짜 인용·근거 부족 응답)
 rag/pipeline.py       검색 → 사전 차단 → Claude 호출 → 인용 검증
+rag/server.py         로컬 HTTP API (표준 라이브러리 http.server): GET /api/health, POST /api/ask
+src/RagAssistant.tsx  웹의 RAG 질문 UI (예시 질문, 답변·인용·거절 배지, 검색 청크)
 evals/golden.jsonl    30문항 (답해야 할 22 + 거절해야 할 8)
 evals/run_eval.py     검색 전용 / live Claude 평가
 tests/test_rag.py     단위 테스트
+tests/test_server.py  로컬 API 테스트 (인덱스·모델·키 상태를 주입, 네트워크 없음)
 ```
 
 ```bash
