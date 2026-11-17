@@ -1,0 +1,16 @@
+[
+  {"doc_id": "rhel-lifecycle", "title": "Red Hat Enterprise Linux Life Cycle", "url": "https://access.redhat.com/support/policy/updates/errata", "products": ["rhel", "els"]},
+  {"doc_id": "rhel-eus", "title": "Red Hat Enterprise Linux Extended Update Support (EUS) Overview", "url": "https://access.redhat.com/articles/rhel-eus", "products": ["rhel", "eus"]},
+  {"doc_id": "rhel-limits", "title": "Red Hat Enterprise Linux technology capabilities and limits", "url": "https://access.redhat.com/articles/rhel-limits", "products": ["rhel"]},
+  {"doc_id": "rhel-overview", "title": "Red Hat Enterprise Linux (product page)", "url": "https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux", "products": ["rhel"]},
+  {"doc_id": "support-sla", "title": "Production Support Terms of Service (SLA)", "url": "https://access.redhat.com/support/offerings/production/sla", "products": ["support"]},
+  {"doc_id": "satellite-lifecycle", "title": "Red Hat Satellite Product Life Cycle", "url": "https://access.redhat.com/support/policy/updates/satellite", "products": ["satellite"]},
+  {"doc_id": "smart-management", "title": "Red Hat Smart Management (product page)", "url": "https://www.redhat.com/en/technologies/management/smart-management", "products": ["satellite", "smart-management"]},
+  {"doc_id": "satellite-features", "title": "Red Hat Satellite features", "url": "https://www.redhat.com/en/technologies/management/satellite/features", "products": ["satellite"]},
+  {"doc_id": "insights", "title": "Red Hat Insights (product page)", "url": "https://www.redhat.com/en/technologies/management/insights", "products": ["insights"]},
+  {"doc_id": "aap-lifecycle", "title": "Red Hat Ansible Automation Platform Life Cycle", "url": "https://access.redhat.com/support/policy/updates/ansible-automation-platform", "products": ["ansible"]},
+  {"doc_id": "ansible", "title": "Red Hat Ansible Automation Platform (product page)", "url": "https://www.redhat.com/en/technologies/management/ansible", "products": ["ansible"]},
+  {"doc_id": "openshift-lifecycle", "title": "Red Hat OpenShift Container Platform Life Cycle Policy", "url": "https://access.redhat.com/support/policy/updates/openshift", "products": ["openshift"]},
+  {"doc_id": "openshift", "title": "Red Hat OpenShift (product page)", "url": "https://www.redhat.com/en/technologies/cloud-computing/openshift", "products": ["openshift"]},
+  {"doc_id": "openshift-virtualization", "title": "Red Hat OpenShift Virtualization (product page)", "url": "https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization", "products": ["openshift", "virtualization"]}
+]
