@@ -2,3 +2,8 @@ node_modules
 dist
 .DS_Store
 *.local
+.venv
+__pycache__/
+*.pyc
+# Red Hat page text is fetched on demand (python -m rag.build_corpus), not redistributed
+rag/corpus/*.md

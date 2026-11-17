@@ -1,0 +1,801 @@
+{
+  "rows": [
+    {
+      "id": "q01",
+      "kind": "answer",
+      "question": "RHEL 8, 9, 10은 기본 라이프사이클이 총 몇 년인가요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 18.96,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-limits",
+        "rhel-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "q02",
+      "kind": "answer",
+      "question": "RHEL 9부터 EUS, E4S 같은 확장 지원이 어떤 모델로 통합됐나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 25.84,
+      "retrieved_docs": [
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-eus"
+      ],
+      "top1": false,
+      "recall_at_5": true,
+      "answer": "[rhel-lifecycle] ELCP는 기존에 별도로 제공되던 Extended Update Support (EUS), Enhanced EUS (EEUS), Update Services for SAP Solutions (E4S)를 대체하며, 적격 마이너 릴리스에 일관된 지원 기간을 제공합니다.\n[rhel-lifecycle] 적격 짝수 마이너 릴리스(.2, .4, .6, .8)는 GA부터 6년, 마지막 마이너 릴리스(.10)는 9년간 지원됩니다.\n[rhel-lifecycle] 다만 SAP 고객의 경우 ELCP는 RHEL 10.6부터 E4S를 대체하며, RHEL 8과 RHEL 9에서는 E4S가 계획대로 계속 제공됩니다.\n[rhel-lifecycle] 또한 ELCP는 RHEL 8.10부터 RHEL Extended Life Cycle Support (ELS) 오퍼링도 대체합니다. [rhel-lifecycle]",
+      "raw_answer": "RHEL 9부터 Red Hat은 확장 지원 오퍼링을 Extended Life Cycle Premium (ELCP)이라는 단일 모델로 통합했습니다. [rhel-lifecycle] ELCP는 기존에 별도로 제공되던 Extended Update Support (EUS), Enhanced EUS (EEUS), Update Services for SAP Solutions (E4S)를 대체하며, 적격 마이너 릴리스에 일관된 지원 기간을 제공합니다. [rhel-lifecycle] 적격 짝수 마이너 릴리스(.2, .4, .6, .8)는 GA부터 6년, 마지막 마이너 릴리스(.10)는 9년간 지원됩니다. [rhel-lifecycle] 다만 SAP 고객의 경우 ELCP는 RHEL 10.6부터 E4S를 대체하며, RHEL 8과 RHEL 9에서는 E4S가 계획대로 계속 제공됩니다. [rhel-lifecycle] 또한 ELCP는 RHEL 8.10부터 RHEL Extended Life Cycle Support (ELS) 오퍼링도 대체합니다. [rhel-lifecycle]",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [
+        "RHEL 9부터 Red Hat은 확장 지원 오퍼링을 Extended Life Cycle Premium (ELCP)이라는 단일 모델로 통합했습니다."
+      ],
+      "citation_clean": false,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q03",
+      "kind": "answer",
+      "question": "ELCP는 대상 마이너 릴리스를 GA부터 몇 년 동안 지원하나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 18.0,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "[rhel-lifecycle] 마지막(terminal) 마이너 릴리스(.10)는 9년 동안 지원됩니다.\n[rhel-lifecycle] ELCP 기간 이후에도 지원이 필요하면 Long-Life (LL) Add-on term extensions를 통해 1년 단위로 갱신하며 지원을 연장할 수 있습니다. [rhel-lifecycle]",
+      "raw_answer": "ELCP(Extended Life Cycle Premium)는 대상이 되는 짝수 마이너 릴리스(.2, .4, .6, .8)를 general availability부터 6년 동안 지원합니다. [rhel-lifecycle] 마지막(terminal) 마이너 릴리스(.10)는 9년 동안 지원됩니다. [rhel-lifecycle] ELCP 기간 이후에도 지원이 필요하면 Long-Life (LL) Add-on term extensions를 통해 1년 단위로 갱신하며 지원을 연장할 수 있습니다. [rhel-lifecycle]",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [
+        "ELCP(Extended Life Cycle Premium)는 대상이 되는 짝수 마이너 릴리스(.2, .4, .6, .8)를 general availability부터 6년 동안 지원합니다."
+      ],
+      "citation_clean": false,
+      "cited_expected": true,
+      "key_facts": false
+    },
+    {
+      "id": "q04",
+      "kind": "answer",
+      "question": "RHEL 마지막 마이너 릴리스(.10)는 ELCP로 몇 년 지원받나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 22.08,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "RHEL의 마지막 마이너 릴리스(.10)는 최초 릴리스(GA)부터 9년간 ELCP 지원을 받습니다 [rhel-lifecycle].\n이는 짝수 마이너 릴리스(.2, .4, .6, .8)의 ELCP 지원 기간인 6년보다 깁니다 [rhel-lifecycle].\nELCP는 마지막 마이너 릴리스인 RHEL 8.10, 9.10, 10.10에 4년의 추가 확장 지원을 제공합니다 [rhel-lifecycle].\nRHEL 8.10의 경우 ELCP가 6/1/2029부터 RHEL Extended Life Cycle Support (ELS)를 대체합니다 [rhel-lifecycle].\nELCP 기간 이후에도 지원이 필요하면 Long-Life (LL) Add-on 기간 연장으로 1년 단위의 갱신형 지원을 받을 수 있습니다 [rhel-lifecycle].",
+      "raw_answer": "RHEL의 마지막 마이너 릴리스(.10)는 최초 릴리스(GA)부터 9년간 ELCP 지원을 받습니다 [rhel-lifecycle]. 이는 짝수 마이너 릴리스(.2, .4, .6, .8)의 ELCP 지원 기간인 6년보다 깁니다 [rhel-lifecycle]. ELCP는 마지막 마이너 릴리스인 RHEL 8.10, 9.10, 10.10에 4년의 추가 확장 지원을 제공합니다 [rhel-lifecycle]. RHEL 8.10의 경우 ELCP가 6/1/2029부터 RHEL Extended Life Cycle Support (ELS)를 대체합니다 [rhel-lifecycle]. ELCP 기간 이후에도 지원이 필요하면 Long-Life (LL) Add-on 기간 연장으로 1년 단위의 갱신형 지원을 받을 수 있습니다 [rhel-lifecycle].",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q05",
+      "kind": "answer",
+      "question": "RHEL 8 ELS는 언제부터 ELCP로 대체되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.56,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "RHEL Extended Life Cycle Support (ELS)는 RHEL 8.10을 시작으로 6/1/2029부터 Extended Life Cycle Premium (ELCP)으로 대체됩니다 [rhel-lifecycle].\nELCP는 마지막 마이너 릴리스인 RHEL 8.10, 9.10, 10.10에 대해 추가로 4년의 확장 지원을 제공합니다 [rhel-lifecycle].\nRHEL 8에서는 8.10만 ELCP 대상이며, ELCP는 8.10의 유지보수를 10년차 이후까지 연장합니다 [rhel-lifecycle].",
+      "raw_answer": "RHEL Extended Life Cycle Support (ELS)는 RHEL 8.10을 시작으로 6/1/2029부터 Extended Life Cycle Premium (ELCP)으로 대체됩니다 [rhel-lifecycle]. ELCP는 마지막 마이너 릴리스인 RHEL 8.10, 9.10, 10.10에 대해 추가로 4년의 확장 지원을 제공합니다 [rhel-lifecycle]. RHEL 8에서는 8.10만 ELCP 대상이며, ELCP는 8.10의 유지보수를 10년차 이후까지 연장합니다 [rhel-lifecycle].",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q06",
+      "kind": "answer",
+      "question": "ELCP 기간이 끝난 뒤에도 같은 마이너 릴리스로 계속 지원받으려면 어떤 옵션이 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 18.0,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "ELCP 기간 이후에도 지원이 필요한 고객은 Long-Life (LL) Add-on term extensions를 통해 매년 갱신 가능한 단위로 지원을 계속 받을 수 있습니다 [rhel-lifecycle].\nExtended Life Cycle Premium (ELCP)과 Long-Life (LL) Add-On term extensions를 함께 사용하면 적격 마이너 릴리스에서 최대 14년(그 이상도 가능)까지 errata 지원을 받을 수 있습니다 [rhel-lifecycle].\n참고로 ELCP 자체는 적격 짝수 마이너 릴리스(.2, .4, .6, .8)에 GA부터 6년, 마지막 마이너 릴리스(.10)에 9년의 지원을 제공합니다 [rhel-lifecycle].",
+      "raw_answer": "ELCP 기간 이후에도 지원이 필요한 고객은 Long-Life (LL) Add-on term extensions를 통해 매년 갱신 가능한 단위로 지원을 계속 받을 수 있습니다 [rhel-lifecycle]. Extended Life Cycle Premium (ELCP)과 Long-Life (LL) Add-On term extensions를 함께 사용하면 적격 마이너 릴리스에서 최대 14년(그 이상도 가능)까지 errata 지원을 받을 수 있습니다 [rhel-lifecycle]. 참고로 ELCP 자체는 적격 짝수 마이너 릴리스(.2, .4, .6, .8)에 GA부터 6년, 마지막 마이너 릴리스(.10)에 9년의 지원을 제공합니다 [rhel-lifecycle].",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q07",
+      "kind": "answer",
+      "question": "RHEL 9에서 ELCP 대상이 되는 마이너 릴리스는 어떤 버전들인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 23.5,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "RHEL 9부터 확장 지원은 Extended Life Cycle Premium(ELCP)이라는 단일 모델로 통합되었습니다 [rhel-lifecycle].\nELCP 대상은 짝수 번호 마이너 릴리스(.2, .4, .6, .8)로, general availability부터 6년간 지원됩니다 [rhel-lifecycle].\nRHEL 9에 적용하면 9.2, 9.4, 9.6, 9.8이 해당됩니다 [rhel-lifecycle].\n마지막 마이너 릴리스인 RHEL 9.10은 9년간 ELCP 지원을 받습니다 [rhel-lifecycle].",
+      "raw_answer": "RHEL 9부터 확장 지원은 Extended Life Cycle Premium(ELCP)이라는 단일 모델로 통합되었습니다 [rhel-lifecycle]. ELCP 대상은 짝수 번호 마이너 릴리스(.2, .4, .6, .8)로, general availability부터 6년간 지원됩니다 [rhel-lifecycle]. RHEL 9에 적용하면 9.2, 9.4, 9.6, 9.8이 해당됩니다 [rhel-lifecycle]. 마지막 마이너 릴리스인 RHEL 9.10은 9년간 ELCP 지원을 받습니다 [rhel-lifecycle].",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q08",
+      "kind": "answer",
+      "question": "RHEL 표준 errata 기준에서 보안 패치 대상 CVE의 CVSS 점수 기준은 몇 점 이상인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 9.74,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "satellite-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "[rhel-lifecycle] 이 기준은 April 1, 2025부터 적용되었습니다.\n[rhel-lifecycle] 모든 errata는 Red Hat의 재량에 따라 제공됩니다. [rhel-lifecycle]",
+      "raw_answer": "RHEL 표준 errata 기준에서 보안 errata(RHSA)의 대상은 Red Hat이 정의한 Critical, Important, Moderate CVE 가운데 CVSS 점수 7 이상인 것입니다. [rhel-lifecycle] 이 기준은 April 1, 2025부터 적용되었습니다. [rhel-lifecycle] 모든 errata는 Red Hat의 재량에 따라 제공됩니다. [rhel-lifecycle]",
+      "citations": [
+        "rhel-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [
+        "RHEL 표준 errata 기준에서 보안 errata(RHSA)의 대상은 Red Hat이 정의한 Critical, Important, Moderate CVE 가운데 CVSS 점수 7 이상인 것입니다."
+      ],
+      "citation_clean": false,
+      "cited_expected": true,
+      "key_facts": false
+    },
+    {
+      "id": "q09",
+      "kind": "answer",
+      "question": "RHEL EUS 리포지터리는 몇 개월 동안 유지되나요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 19.95,
+      "retrieved_docs": [
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "q10",
+      "kind": "answer",
+      "question": "Premium 지원에서 Severity 1 장애의 최초 응답 시간은 얼마나 되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.18,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "support-sla",
+        "aap-lifecycle",
+        "support-sla"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Premium 지원에서 Severity 1 장애의 최초 응답 시간은 1 hour이며, 이후 지속 응답은 1 hour or as agreed입니다 [support-sla].\nPremium 지원은 Severity 1 및 2에 대해 24x7로 제공됩니다 [support-sla].\n24x7 지원을 받으려면 문제가 해결될 때까지 연락 가능한 전담 담당자를 지정해야 합니다 [support-sla].",
+      "raw_answer": "Premium 지원에서 Severity 1 장애의 최초 응답 시간은 1 hour이며, 이후 지속 응답은 1 hour or as agreed입니다 [support-sla]. Premium 지원은 Severity 1 및 2에 대해 24x7로 제공됩니다 [support-sla]. 24x7 지원을 받으려면 문제가 해결될 때까지 연락 가능한 전담 담당자를 지정해야 합니다 [support-sla].",
+      "citations": [
+        "support-sla"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q11",
+      "kind": "answer",
+      "question": "Standard 지원 등급에서 Severity 2 최초 응답 시간은?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.45,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "support-sla",
+        "aap-lifecycle",
+        "support-sla"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Standard 지원 등급에서 Severity 2의 최초 응답 시간은 **4 business hours**이며, 이후 응답(ongoing response)도 동일하게 4 business hours입니다 [support-sla].\nStandard 등급의 지원 시간은 Standard business hours입니다 [support-sla].",
+      "raw_answer": "Standard 지원 등급에서 Severity 2의 최초 응답 시간은 **4 business hours**이며, 이후 응답(ongoing response)도 동일하게 4 business hours입니다 [support-sla]. Standard 등급의 지원 시간은 Standard business hours입니다 [support-sla].",
+      "citations": [
+        "support-sla"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q12",
+      "kind": "answer",
+      "question": "Premium 지원에서 24x7 대응을 받는 장애 등급은 무엇인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 11.51,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "rhel-limits",
+        "support-sla",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Premium 지원은 기본적으로 표준 업무 시간에 제공되며, Severity 1과 Severity 2 장애는 24x7로 대응합니다 [support-sla].\n다만 Severity 2는 지원 케이스를 등록해도 자동으로 24x7 대응이 적용되지 않으므로, 필요한 경우 명시적으로 요청해야 합니다 [support-sla].\n또한 Red Hat은 24x7 대응을 위해 문제가 해결될 때까지 연락 가능한 전담 담당자를 지정해 달라고 요청합니다 [support-sla].",
+      "raw_answer": "Premium 지원은 기본적으로 표준 업무 시간에 제공되며, Severity 1과 Severity 2 장애는 24x7로 대응합니다 [support-sla]. 다만 Severity 2는 지원 케이스를 등록해도 자동으로 24x7 대응이 적용되지 않으므로, 필요한 경우 명시적으로 요청해야 합니다 [support-sla]. 또한 Red Hat은 24x7 대응을 위해 문제가 해결될 때까지 연락 가능한 전담 담당자를 지정해 달라고 요청합니다 [support-sla].",
+      "citations": [
+        "support-sla"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q13",
+      "kind": "answer",
+      "question": "Red Hat Satellite는 몇 개 버전을 동시에 지원하나요? 지원 정책이 궁금합니다.",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 13.8,
+      "retrieved_docs": [
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "q14",
+      "kind": "answer",
+      "question": "Satellite EUS는 어느 버전부터 제공되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 19.92,
+      "retrieved_docs": [
+        "satellite-lifecycle",
+        "rhel-lifecycle",
+        "satellite-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Satellite EUS(Extended Update Support)는 버전 6.16부터 일부 선택된 Satellite 버전에 제공됩니다 [satellite-lifecycle].\n이는 선택형 유료 애드온이며, Maintenance Support Phase 종료 후 1년 동안 적용됩니다 [satellite-lifecycle].\nEUS 기간에는 Critical 및 Important 보안 에라타(RHSA)와 Urgent 및 Selected Priority 버그 수정 에라타(RHBA)가 제공되는 대로 릴리스됩니다 [satellite-lifecycle].\n또한 Satellite Z-Stream 릴리스도 계속 제공됩니다 [satellite-lifecycle].\n구매 방법은 Red Hat 영업 담당자를 통해 안내받을 수 있습니다 [satellite-lifecycle].",
+      "raw_answer": "Satellite EUS(Extended Update Support)는 버전 6.16부터 일부 선택된 Satellite 버전에 제공됩니다 [satellite-lifecycle]. 이는 선택형 유료 애드온이며, Maintenance Support Phase 종료 후 1년 동안 적용됩니다 [satellite-lifecycle]. EUS 기간에는 Critical 및 Important 보안 에라타(RHSA)와 Urgent 및 Selected Priority 버그 수정 에라타(RHBA)가 제공되는 대로 릴리스됩니다 [satellite-lifecycle]. 또한 Satellite Z-Stream 릴리스도 계속 제공됩니다 [satellite-lifecycle]. 구매 방법은 Red Hat 영업 담당자를 통해 안내받을 수 있습니다 [satellite-lifecycle].",
+      "citations": [
+        "satellite-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q15",
+      "kind": "answer",
+      "question": "Satellite 업그레이드 중에 Capsule 서버 버전은 어디까지 지원되나요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 16.93,
+      "retrieved_docs": [
+        "satellite-features",
+        "satellite-lifecycle",
+        "satellite-lifecycle",
+        "smart-management",
+        "smart-management"
+      ],
+      "top1": false,
+      "recall_at_5": true,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "q16",
+      "kind": "answer",
+      "question": "OpenShift 5부터 각 마이너 릴리스의 지원 기간은 총 몇 개월인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 27.64,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "rhel-lifecycle",
+        "openshift-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "[openshift-lifecycle] Extended Life Cycle (ELC) 릴리스로 지정된 버전은 선택형 애드온으로 최대 36개월의 추가 지원을 받을 수 있습니다.\n[openshift-lifecycle] ELC는 OpenShift 5.2를 시작으로 5.5, 5.8처럼 세 번째 마이너 릴리스마다 제공됩니다. [openshift-lifecycle]",
+      "raw_answer": "OpenShift 5부터 각 마이너 릴리스는 12개월의 Full Support와 이어지는 12개월의 Maintenance Support를 받아 총 24개월 동안 지원됩니다. [openshift-lifecycle] Extended Life Cycle (ELC) 릴리스로 지정된 버전은 선택형 애드온으로 최대 36개월의 추가 지원을 받을 수 있습니다. 이 경우 GA부터 최대 60개월까지 지원됩니다. [openshift-lifecycle] ELC는 OpenShift 5.2를 시작으로 5.5, 5.8처럼 세 번째 마이너 릴리스마다 제공됩니다. [openshift-lifecycle]",
+      "citations": [
+        "openshift-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [
+        "OpenShift 5부터 각 마이너 릴리스는 12개월의 Full Support와 이어지는 12개월의 Maintenance Support를 받아 총 24개월 동안 지원됩니다.",
+        "이 경우 GA부터 최대 60개월까지 지원됩니다."
+      ],
+      "citation_clean": false,
+      "cited_expected": true,
+      "key_facts": false
+    },
+    {
+      "id": "q17",
+      "kind": "answer",
+      "question": "OpenShift ELC(Extended Life Cycle) 애드온으로 최대 몇 개월을 더 지원받을 수 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 24.46,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "OpenShift ELC(Extended Life Cycle)는 Maintenance Support 이후에 이어지는 선택형 지원 단계로, 최대 36개월의 추가 지원을 제공합니다 [openshift-lifecycle].\n이를 통해 GA(general availability) 시점부터 최대 60개월까지 동일한 마이너 릴리스를 유지할 수 있습니다 [openshift-lifecycle].\nELC는 OpenShift 5.2부터 시작해 5.5, 5.8과 같이 세 번째 마이너 릴리스마다 제공되며, 그 외 OpenShift 5 마이너 릴리스는 일반적인 24개월 Full Support 및 Maintenance Support 라이프사이클을 따릅니다 [openshift-lifecycle].\n또한 OpenShift의 ELC 적용만으로 모든 레이어드 제품이나 컨테이너 이미지의 라이프사이클이 연장되는 것은 아닙니다 [openshift-lifecycle].",
+      "raw_answer": "OpenShift ELC(Extended Life Cycle)는 Maintenance Support 이후에 이어지는 선택형 지원 단계로, 최대 36개월의 추가 지원을 제공합니다 [openshift-lifecycle]. 이를 통해 GA(general availability) 시점부터 최대 60개월까지 동일한 마이너 릴리스를 유지할 수 있습니다 [openshift-lifecycle]. ELC는 OpenShift 5.2부터 시작해 5.5, 5.8과 같이 세 번째 마이너 릴리스마다 제공되며, 그 외 OpenShift 5 마이너 릴리스는 일반적인 24개월 Full Support 및 Maintenance Support 라이프사이클을 따릅니다 [openshift-lifecycle]. 또한 OpenShift의 ELC 적용만으로 모든 레이어드 제품이나 컨테이너 이미지의 라이프사이클이 연장되는 것은 아닙니다 [openshift-lifecycle].",
+      "citations": [
+        "openshift-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q18",
+      "kind": "answer",
+      "question": "OpenShift 마이너 릴리스는 보통 몇 개월 주기로 나오나요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 23.21,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "q19",
+      "kind": "answer",
+      "question": "Ansible Automation Platform 2.6을 컨테이너 방식으로 설치하려면 어떤 RHEL 버전이 필요한가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 22.71,
+      "retrieved_docs": [
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "ansible"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Ansible Automation Platform 2.6을 컨테이너 방식으로 설치하려면 RHEL 9 또는 RHEL 10이 필요합니다 [aap-lifecycle].\n참고로 RPM 방식으로 설치할 경우 지원 OS는 RHEL 9입니다 [aap-lifecycle].\n데이터베이스는 RHEL에서 제공하는 PostgreSQL 15-17 버전이 요구됩니다 [aap-lifecycle].",
+      "raw_answer": "Ansible Automation Platform 2.6을 컨테이너 방식으로 설치하려면 RHEL 9 또는 RHEL 10이 필요합니다 [aap-lifecycle]. 참고로 RPM 방식으로 설치할 경우 지원 OS는 RHEL 9입니다 [aap-lifecycle]. 데이터베이스는 RHEL에서 제공하는 PostgreSQL 15-17 버전이 요구됩니다 [aap-lifecycle].",
+      "citations": [
+        "aap-lifecycle"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q20",
+      "kind": "answer",
+      "question": "고객이 VMware에서 돌리던 가상머신을 OpenShift로 옮겨서 컨테이너랑 같이 운영할 수 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 20.23,
+      "retrieved_docs": [
+        "openshift",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Red Hat OpenShift Virtualization은 기존 가상머신(VM)을 통합 하이브리드 클라우드 애플리케이션 플랫폼으로 마이그레이션해 최신 워크로드와 함께 실행하고 관리하도록 지원합니다 [openshift-virtualization].\n통합된 도구 세트로 VM을 컨테이너 및 서버리스 워크로드와 함께 관리할 수 있습니다 [openshift-virtualization].\nOpenShift Virtualization은 Red Hat OpenShift에 포함된 기능입니다 [openshift-virtualization].\n기존 VM을 중단하지 않고 컨테이너 도입, 마이크로서비스 구현, AI 통합 등을 통해 원하는 속도로 워크로드를 현대화할 수 있습니다 [openshift-virtualization].\nVM만 마이그레이션하고 운영하려는 경우에는 가상 워크로드 전용 솔루션인 Red Hat OpenShift Virtualization Engine도 있습니다 [openshift-virtualization].",
+      "raw_answer": "Red Hat OpenShift Virtualization은 기존 가상머신(VM)을 통합 하이브리드 클라우드 애플리케이션 플랫폼으로 마이그레이션해 최신 워크로드와 함께 실행하고 관리하도록 지원합니다 [openshift-virtualization]. 통합된 도구 세트로 VM을 컨테이너 및 서버리스 워크로드와 함께 관리할 수 있습니다 [openshift-virtualization]. OpenShift Virtualization은 Red Hat OpenShift에 포함된 기능입니다 [openshift-virtualization]. 기존 VM을 중단하지 않고 컨테이너 도입, 마이크로서비스 구현, AI 통합 등을 통해 원하는 속도로 워크로드를 현대화할 수 있습니다 [openshift-virtualization]. VM만 마이그레이션하고 운영하려는 경우에는 가상 워크로드 전용 솔루션인 Red Hat OpenShift Virtualization Engine도 있습니다 [openshift-virtualization].",
+      "citations": [
+        "openshift-virtualization"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q21",
+      "kind": "answer",
+      "question": "Red Hat Insights는 지금 어떤 이름으로 바뀌었나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 9.84,
+      "retrieved_docs": [
+        "insights",
+        "insights",
+        "insights",
+        "insights",
+        "ansible"
+      ],
+      "top1": true,
+      "recall_at_5": true,
+      "answer": "Red Hat Insights는 현재 **Red Hat Lightspeed**로 이름이 바뀌었습니다 [insights].\nRed Hat Lightspeed는 Red Hat 플랫폼 전반의 위험을 예측하고, 조치를 권장하며, 비용을 추적하는 엔드투엔드 시스템 관리 도구입니다 [insights].\nRed Hat Enterprise Linux®, Red Hat Satellite, Model Context Protocol (MCP) Server, Red Hat Advanced Cluster Management, Red Hat OpenShift®, Red Hat Ansible® Automation Platform 등에 통합되어 있습니다 [insights].",
+      "raw_answer": "Red Hat Insights는 현재 **Red Hat Lightspeed**로 이름이 바뀌었습니다 [insights]. Red Hat Lightspeed는 Red Hat 플랫폼 전반의 위험을 예측하고, 조치를 권장하며, 비용을 추적하는 엔드투엔드 시스템 관리 도구입니다 [insights]. Red Hat Enterprise Linux®, Red Hat Satellite, Model Context Protocol (MCP) Server, Red Hat Advanced Cluster Management, Red Hat OpenShift®, Red Hat Ansible® Automation Platform 등에 통합되어 있습니다 [insights].",
+      "citations": [
+        "insights"
+      ],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": true,
+      "cited_expected": true,
+      "key_facts": true
+    },
+    {
+      "id": "q22",
+      "kind": "answer",
+      "question": "원격 지사에 있는 수천 대 RHEL 서버를 Satellite로 관리하려면 어떤 구성 요소를 쓰나요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 13.76,
+      "retrieved_docs": [
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features"
+      ],
+      "top1": false,
+      "recall_at_5": true,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": false
+    },
+    {
+      "id": "r01",
+      "kind": "refuse",
+      "question": "RHEL Premium 서브스크립션 가격이 얼마예요?",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 7.14,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r02",
+      "kind": "refuse",
+      "question": "Ansible 노드 50개 견적 내면 할인 몇 퍼센트까지 가능해요?",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 11.84,
+      "retrieved_docs": [
+        "ansible",
+        "aap-lifecycle",
+        "ansible",
+        "ansible",
+        "ansible"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r03",
+      "kind": "refuse",
+      "question": "OpenShift Virtualization 코어당 비용 알려주세요.",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 12.41,
+      "retrieved_docs": [
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r04",
+      "kind": "refuse",
+      "question": "오늘 점심 메뉴 추천해줘.",
+      "status": "refused",
+      "reason": "off_domain",
+      "top_score": 0.0,
+      "retrieved_docs": [],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r05",
+      "kind": "refuse",
+      "question": "다음 달 환율 전망은 어떻게 돼?",
+      "status": "refused",
+      "reason": "off_domain",
+      "top_score": 0.0,
+      "retrieved_docs": [],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r06",
+      "kind": "refuse",
+      "question": "Red Hat Satellite 7.0 정식 출시일은 언제인가요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 13.8,
+      "retrieved_docs": [
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r07",
+      "kind": "refuse",
+      "question": "A고객사의 RHEL 구독 계약 만료일이 언제였죠?",
+      "status": "refused",
+      "reason": "low_evidence",
+      "top_score": 4.34,
+      "retrieved_docs": [
+        "rhel-limits",
+        "aap-lifecycle",
+        "openshift-lifecycle",
+        "rhel-limits",
+        "aap-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    },
+    {
+      "id": "r08",
+      "kind": "refuse",
+      "question": "Windows Server 2025 지원 종료일은 언제인가요?",
+      "status": "refused",
+      "reason": "insufficient_context",
+      "top_score": 13.44,
+      "retrieved_docs": [
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "aap-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false,
+      "answer": "",
+      "raw_answer": "INSUFFICIENT_CONTEXT",
+      "citations": [],
+      "fabricated_citations": [],
+      "dropped_sentences": [],
+      "citation_clean": false,
+      "cited_expected": false,
+      "key_facts": true
+    }
+  ],
+  "summary": {
+    "questions": 30,
+    "answerable": 22,
+    "should_refuse": 8,
+    "top1": "18/22 (81.8%)",
+    "recall_at_5": "21/22 (95.5%)",
+    "refusal_accuracy": "8/8 (100.0%)",
+    "over_refusals": "6/22 (27.3%)",
+    "citation_integrity": "12/16 (75.0%)",
+    "cited_expected": "16/16 (100.0%)",
+    "key_fact_accuracy": "13/16 (81.2%)"
+  },
+  "meta": {
+    "mode": "live",
+    "model": "claude-opus-5-5",
+    "chunks": 289,
+    "run_at": "2026-11-17T18:07:31"
+  }
+}
