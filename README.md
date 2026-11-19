@@ -63,7 +63,7 @@ rag/guardrails.py     사전 차단(가격·범위 밖·근거 부족) / 사후 
 rag/pipeline.py       검색 → 사전 차단 → Claude 호출 → 인용 검증
 rag/server.py         로컬 HTTP API (표준 라이브러리 http.server): GET /api/health, POST /api/ask
 src/RagAssistant.tsx  웹의 RAG 질문 UI (예시 질문, 답변·인용·거절 배지, 검색 청크)
-evals/golden.jsonl    30문항 (답해야 할 22 + 거절해야 할 8)
+evals/golden.jsonl    32문항 (답해야 할 23 + 거절해야 할 9)
 evals/run_eval.py     검색 전용 / live Claude 평가
 tests/test_rag.py     단위 테스트
 tests/test_server.py  로컬 API 테스트 (인덱스·모델·키 상태를 주입, 네트워크 없음)
@@ -85,8 +85,9 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 | v0 | 첫 구현 | `v0-baseline-retrieval.json` |
 | v1 | 여러 페이지에 반복되는 사이트 메뉴 줄 제거, 별칭 확장어 가중치 0.5, 질문에 나온 제품의 문서 우선 | `v1-retrieval.json`, `v1-live.json` |
 | v2 | live eval에서 찾은 문제 수정: 마침표 뒤에 붙은 인용을 다음 문장으로 잘못 넘기던 버그, 한국어 단위·기간 표현(개월, 주기) 별칭, Claude에게 주는 청크 5개 → 8개 | `v2-retrieval.json`, `v2-live.json` |
+| v3 | 가격 가드레일 정교화: "비용" 한 단어만으로 기술·영업 맥락("VMware 비용 때문에", "비용 절감")까지 거절하던 과잉 차단 수정, 실제 가격·견적·금액 요청은 그대로 차단. 회귀 확인용 2문항 추가 | `v3-retrieval.json` |
 
-문서 단위 Top-1은 "맞는 문서"만 보므로, 답이 있는 문단이 빠져도 맞은 것으로 셉니다. v1 live에서 Claude가 "근거 부족"으로 답한 6건이 이 경우였습니다. 같은 30문항으로 반복 측정했으므로 v1 이후 수치에는 과적합 가능성이 있습니다. 문항은 Claude가 코퍼스 원문을 보고 초안을 썼고, 사용자 검토가 필요합니다. `build_corpus`는 실행 시점의 공식 페이지를 내려받으므로, 원문이 개정되면 청크 수와 수치가 조금 달라질 수 있습니다.
+문서 단위 Top-1은 "맞는 문서"만 보므로, 답이 있는 문단이 빠져도 맞은 것으로 셉니다. v1 live에서 Claude가 "근거 부족"으로 답한 6건이 이 경우였습니다. v1~v2는 같은 30문항으로 반복 측정했으므로 그 수치에는 과적합 가능성이 있습니다. v3에서 가격 가드레일 회귀 확인용 2문항(q23 비용 맥락, r09 라이선스 금액)을 더해 32문항이 되었고, v3 결과는 이전 버전과 1:1 비교하지 않습니다. 문항은 Claude가 코퍼스 원문을 보고 초안을 썼고, 사용자 검토가 필요합니다. `build_corpus`는 실행 시점의 공식 페이지를 내려받으므로, 원문이 개정되면 청크 수와 수치가 조금 달라질 수 있습니다.
 
 ## 범위
 

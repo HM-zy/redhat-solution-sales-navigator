@@ -28,3 +28,5 @@
 {"id": "r06", "kind": "refuse", "question": "Red Hat Satellite 7.0 정식 출시일은 언제인가요?", "expected_docs": [], "must_include": [], "refuse_reason": "not_in_corpus"}
 {"id": "r07", "kind": "refuse", "question": "A고객사의 RHEL 구독 계약 만료일이 언제였죠?", "expected_docs": [], "must_include": [], "refuse_reason": "not_in_corpus"}
 {"id": "r08", "kind": "refuse", "question": "Windows Server 2025 지원 종료일은 언제인가요?", "expected_docs": [], "must_include": [], "refuse_reason": "not_in_corpus"}
+{"id": "q23", "kind": "answer", "question": "VMware 비용 때문에 가상화 플랫폼 전환을 검토 중입니다. OpenShift Virtualization은 어떤 워크로드를 지원하나요?", "expected_docs": ["openshift-virtualization", "openshift"], "must_include": []}
+{"id": "r09", "kind": "refuse", "question": "RHEL 라이선스 금액 알려주세요.", "expected_docs": [], "must_include": [], "refuse_reason": "pricing"}

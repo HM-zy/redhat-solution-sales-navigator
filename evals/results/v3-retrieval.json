@@ -1,0 +1,641 @@
+{
+  "rows": [
+    {
+      "id": "q01",
+      "kind": "answer",
+      "question": "RHEL 8, 9, 10은 기본 라이프사이클이 총 몇 년인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 23.12,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-limits",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "aap-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q02",
+      "kind": "answer",
+      "question": "RHEL 9부터 EUS, E4S 같은 확장 지원이 어떤 모델로 통합됐나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 26.42,
+      "retrieved_docs": [
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": true
+    },
+    {
+      "id": "q03",
+      "kind": "answer",
+      "question": "ELCP는 대상 마이너 릴리스를 GA부터 몇 년 동안 지원하나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 22.74,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q04",
+      "kind": "answer",
+      "question": "RHEL 마지막 마이너 릴리스(.10)는 ELCP로 몇 년 지원받나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 27.1,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q05",
+      "kind": "answer",
+      "question": "RHEL 8 ELS는 언제부터 ELCP로 대체되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.8,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q06",
+      "kind": "answer",
+      "question": "ELCP 기간이 끝난 뒤에도 같은 마이너 릴리스로 계속 지원받으려면 어떤 옵션이 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 18.12,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q07",
+      "kind": "answer",
+      "question": "RHEL 9에서 ELCP 대상이 되는 마이너 릴리스는 어떤 버전들인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 23.68,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q08",
+      "kind": "answer",
+      "question": "RHEL 표준 errata 기준에서 보안 패치 대상 CVE의 CVSS 점수 기준은 몇 점 이상인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 9.78,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "satellite-lifecycle",
+        "rhel-lifecycle",
+        "satellite-lifecycle",
+        "rhel-overview"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q09",
+      "kind": "answer",
+      "question": "RHEL EUS 리포지터리는 몇 개월 동안 유지되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 20.78,
+      "retrieved_docs": [
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q10",
+      "kind": "answer",
+      "question": "Premium 지원에서 Severity 1 장애의 최초 응답 시간은 얼마나 되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.33,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "support-sla",
+        "aap-lifecycle",
+        "support-sla",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q11",
+      "kind": "answer",
+      "question": "Standard 지원 등급에서 Severity 2 최초 응답 시간은?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 32.6,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "support-sla",
+        "aap-lifecycle",
+        "support-sla",
+        "aap-lifecycle",
+        "satellite-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q12",
+      "kind": "answer",
+      "question": "Premium 지원에서 24x7 대응을 받는 장애 등급은 무엇인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 11.57,
+      "retrieved_docs": [
+        "support-sla",
+        "support-sla",
+        "support-sla",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-eus",
+        "rhel-eus",
+        "rhel-eus"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q13",
+      "kind": "answer",
+      "question": "Red Hat Satellite는 몇 개 버전을 동시에 지원하나요? 지원 정책이 궁금합니다.",
+      "status": "answered",
+      "reason": null,
+      "top_score": 16.39,
+      "retrieved_docs": [
+        "satellite-lifecycle",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features",
+        "satellite-lifecycle",
+        "satellite-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q14",
+      "kind": "answer",
+      "question": "Satellite EUS는 어느 버전부터 제공되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 20.08,
+      "retrieved_docs": [
+        "satellite-lifecycle",
+        "rhel-lifecycle",
+        "satellite-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "satellite-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q15",
+      "kind": "answer",
+      "question": "Satellite 업그레이드 중에 Capsule 서버 버전은 어디까지 지원되나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 17.0,
+      "retrieved_docs": [
+        "satellite-features",
+        "satellite-lifecycle",
+        "satellite-lifecycle",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features"
+      ],
+      "top1": false,
+      "recall_at_5": true
+    },
+    {
+      "id": "q16",
+      "kind": "answer",
+      "question": "OpenShift 5부터 각 마이너 릴리스의 지원 기간은 총 몇 개월인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 27.86,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "rhel-lifecycle",
+        "openshift-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q17",
+      "kind": "answer",
+      "question": "OpenShift ELC(Extended Life Cycle) 애드온으로 최대 몇 개월을 더 지원받을 수 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 28.71,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q18",
+      "kind": "answer",
+      "question": "OpenShift 마이너 릴리스는 보통 몇 개월 주기로 나오나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 23.4,
+      "retrieved_docs": [
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "openshift-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q19",
+      "kind": "answer",
+      "question": "Ansible Automation Platform 2.6을 컨테이너 방식으로 설치하려면 어떤 RHEL 버전이 필요한가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 22.87,
+      "retrieved_docs": [
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "ansible",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q20",
+      "kind": "answer",
+      "question": "고객이 VMware에서 돌리던 가상머신을 OpenShift로 옮겨서 컨테이너랑 같이 운영할 수 있나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 20.36,
+      "retrieved_docs": [
+        "openshift",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift",
+        "openshift-virtualization",
+        "openshift-virtualization"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q21",
+      "kind": "answer",
+      "question": "Red Hat Insights는 지금 어떤 이름으로 바뀌었나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 9.88,
+      "retrieved_docs": [
+        "insights",
+        "insights",
+        "insights",
+        "insights",
+        "ansible",
+        "smart-management",
+        "rhel-overview",
+        "aap-lifecycle"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "q22",
+      "kind": "answer",
+      "question": "원격 지사에 있는 수천 대 RHEL 서버를 Satellite로 관리하려면 어떤 구성 요소를 쓰나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 13.77,
+      "retrieved_docs": [
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features",
+        "smart-management",
+        "smart-management",
+        "smart-management"
+      ],
+      "top1": false,
+      "recall_at_5": true
+    },
+    {
+      "id": "r01",
+      "kind": "refuse",
+      "question": "RHEL Premium 서브스크립션 가격이 얼마예요?",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 7.19,
+      "retrieved_docs": [
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-lifecycle",
+        "rhel-limits",
+        "aap-lifecycle",
+        "openshift-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r02",
+      "kind": "refuse",
+      "question": "Ansible 노드 50개 견적 내면 할인 몇 퍼센트까지 가능해요?",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 11.93,
+      "retrieved_docs": [
+        "ansible",
+        "aap-lifecycle",
+        "ansible",
+        "ansible",
+        "ansible",
+        "aap-lifecycle",
+        "ansible",
+        "aap-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r03",
+      "kind": "refuse",
+      "question": "OpenShift Virtualization 코어당 비용 알려주세요.",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 12.5,
+      "retrieved_docs": [
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift",
+        "openshift",
+        "openshift-virtualization"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r04",
+      "kind": "refuse",
+      "question": "오늘 점심 메뉴 추천해줘.",
+      "status": "refused",
+      "reason": "off_domain",
+      "top_score": 0.0,
+      "retrieved_docs": [],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r05",
+      "kind": "refuse",
+      "question": "다음 달 환율 전망은 어떻게 돼?",
+      "status": "refused",
+      "reason": "off_domain",
+      "top_score": 0.0,
+      "retrieved_docs": [],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r06",
+      "kind": "refuse",
+      "question": "Red Hat Satellite 7.0 정식 출시일은 언제인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 13.81,
+      "retrieved_docs": [
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "smart-management",
+        "satellite-features",
+        "smart-management",
+        "smart-management",
+        "smart-management"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r07",
+      "kind": "refuse",
+      "question": "A고객사의 RHEL 구독 계약 만료일이 언제였죠?",
+      "status": "refused",
+      "reason": "low_evidence",
+      "top_score": 4.35,
+      "retrieved_docs": [
+        "rhel-limits",
+        "aap-lifecycle",
+        "openshift-lifecycle",
+        "rhel-limits",
+        "aap-lifecycle",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "r08",
+      "kind": "refuse",
+      "question": "Windows Server 2025 지원 종료일은 언제인가요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 13.46,
+      "retrieved_docs": [
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "aap-lifecycle",
+        "rhel-lifecycle",
+        "aap-lifecycle",
+        "aap-lifecycle",
+        "satellite-lifecycle",
+        "satellite-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    },
+    {
+      "id": "q23",
+      "kind": "answer",
+      "question": "VMware 비용 때문에 가상화 플랫폼 전환을 검토 중입니다. OpenShift Virtualization은 어떤 워크로드를 지원하나요?",
+      "status": "answered",
+      "reason": null,
+      "top_score": 22.98,
+      "retrieved_docs": [
+        "openshift",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift-virtualization",
+        "openshift"
+      ],
+      "top1": true,
+      "recall_at_5": true
+    },
+    {
+      "id": "r09",
+      "kind": "refuse",
+      "question": "RHEL 라이선스 금액 알려주세요.",
+      "status": "refused",
+      "reason": "pricing",
+      "top_score": 4.35,
+      "retrieved_docs": [
+        "rhel-limits",
+        "aap-lifecycle",
+        "openshift-lifecycle",
+        "rhel-limits",
+        "aap-lifecycle",
+        "rhel-eus",
+        "rhel-lifecycle",
+        "rhel-lifecycle"
+      ],
+      "top1": false,
+      "recall_at_5": false
+    }
+  ],
+  "summary": {
+    "questions": 32,
+    "answerable": 23,
+    "should_refuse": 9,
+    "top1": "20/23 (87.0%)",
+    "recall_at_5": "23/23 (100.0%)",
+    "pregate_false_refusals": "0/23 (0.0%)",
+    "pregate_refusals_on_should_refuse": "7/9 (77.8%)"
+  },
+  "meta": {
+    "mode": "retrieval",
+    "model": null,
+    "chunks": 292,
+    "run_at": "2026-11-19T22:49:10"
+  }
+}

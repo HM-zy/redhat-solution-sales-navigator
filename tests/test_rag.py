@@ -114,11 +114,29 @@ class RetrievalTests(unittest.TestCase):
 
 class PreGateTests(unittest.TestCase):
     def test_pricing_refused(self):
-        for q in ["RHEL 가격이 얼마예요?", "할인 가능해요?", "how much is the subscription"]:
+        for q in ["RHEL 가격이 얼마예요?", "할인 가능해요?", "how much is the subscription",
+                  "RHEL Premium 서브스크립션 가격이 얼마예요?",
+                  "Ansible 노드 50개 견적 내면 할인 몇 퍼센트까지 가능해요?",
+                  "OpenShift Virtualization 코어당 비용 알려주세요.",
+                  "라이선스 금액 알려주세요", "비용이 얼마나 드나요?", "구축 비용이 어느 정도인지 궁금합니다",
+                  "What is the price per node?", "Cost per core for OpenShift Virtualization?"]:
             self.assertEqual(g.pre_generation(q, 30).reason, "pricing", q)
 
+    def test_technical_cost_talk_is_not_pricing(self):
+        # Regression: the bare word "비용" used to refuse these normal sales/demo questions.
+        for q in ["VMware 비용 때문에 OpenShift Virtualization 도입을 검토하고 있습니다",
+                  "가상화 비용 제약 때문에 마이그레이션 우선순위를 정하려고 합니다",
+                  "비용 절감을 위해 RHEL 9를 선택하면 어떤 장점이 있나요?",
+                  "라이선스 비용이 부담이라 ELS 대신 ELCP 지원을 검토합니다",
+                  "총 소유 비용(TCO) 관점에서 OpenShift Virtualization은 어떤가요?",
+                  "비용이 얼마나 절감되나요?",
+                  "How does OpenShift Virtualization help with cost reduction?"]:
+            self.assertTrue(g.pre_generation(q, 30).allowed, q)
+
     def test_how_long_is_not_pricing(self):
-        self.assertTrue(g.pre_generation("RHEL 8 지원 기간이 얼마나 남았나요?", 30).allowed)
+        for q in ["RHEL 8 지원 기간이 얼마나 남았나요?", "지원 기간이 얼마 정도인가요?",
+                  "Premium 지원에서 Severity 1 장애의 최초 응답 시간은 얼마나 되나요?"]:
+            self.assertTrue(g.pre_generation(q, 30).allowed, q)
 
     def test_off_domain_refused(self):
         self.assertEqual(g.pre_generation("오늘 점심 메뉴", 0).reason, "off_domain")
@@ -203,6 +221,20 @@ class PipelineTests(unittest.TestCase):
         client = FakeClient("", stop_reason="refusal")
         r = answer("Satellite support policy N-2 versions", self.idx, client)
         self.assertEqual((r.status, r.reason), ("refused", "insufficient_context"))
+
+    def test_cost_context_statement_reaches_the_model(self):
+        # The "VMware 비용 때문에..." scenario must not be stopped by the pricing gate.
+        body = "# Life cycle\nRed Hat Enterprise Linux delivers a ten-year life cycle with full support and maintenance support phases."
+        chunk = chunk_document({"doc_id": "rhel-lifecycle", "title": "life", "url": "u"}, body)[0]
+
+        class FixedIndex:  # evidence is not what this test is about
+            def search(self, query, k=5):
+                return [(chunk, 30.0)]
+
+        client = FakeClient("RHEL은 10년 지원됩니다 [rhel-lifecycle].")
+        r = answer("VMware 비용 때문에 RHEL 9 수명주기를 다시 확인하려고 합니다", FixedIndex(), client)
+        self.assertEqual(client.calls, 1)
+        self.assertEqual((r.status, r.reason), ("answered", None))
 
 
 class EvalScoringTests(unittest.TestCase):

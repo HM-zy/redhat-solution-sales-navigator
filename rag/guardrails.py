@@ -3,6 +3,8 @@
 Before the model is called (cheap, no tokens spent):
   1. pricing_gate     - price / discount / quote requests are refused: the corpus holds no
                         prices, and a seller must not quote numbers an assistant made up.
+                        Only the request for a number is a request; "비용"/"cost" in a
+                        technical sentence ("VMware 비용 때문에", "비용 절감", "TCO") is not.
   2. scope_gate       - a question with no Red Hat product signal and no retrieval hit is off-domain.
   3. evidence_gate    - if the best retrieval score is below a threshold, refuse instead of guessing.
 
@@ -21,9 +23,38 @@ from dataclasses import dataclass, field
 INSUFFICIENT = "INSUFFICIENT_CONTEXT"
 EVIDENCE_THRESHOLD = 8.0  # minimum top BM25 score to attempt an answer
 
+# Words that only appear when money is being asked about.
+# "얼마나" (how long / how many) is a normal question; only "얼마예요/얼마인가요" (how much) is about price.
 _PRICING = re.compile(
-    # "얼마나" (how long / how many) is a normal question; only "얼마예요/얼마인가요" (how much) is about price.
-    r"가격|할인|견적|단가|얼마(?:예요|에요|인가|입니까|죠|야)|비용|요금|price|pricing|discount|quote|\bcost|how much", re.I
+    r"가격|가격표|단가|견적|견적서|할인|요금|금액|구독료|사용료"
+    r"|price|pricing|discount|quote|quotation"
+    r"|얼마(?:예요|에요|인가요|인가|입니까|죠|야|임)"
+    r"|몇\s*(?:원|달러|불|만원)"
+    # "how much is the subscription" asks for a number; "how much time does it take" does not.
+    r"|how\s+much\s+(?:is|are)\b"
+    r"|how\s+much\s+(?:does|do|will|would)\b[^\n?]{0,40}\b(?:costs?|charge)",
+    re.I,
+)
+
+# "비용" and "cost" are ordinary words in a technical conversation ("VMware 비용 때문에",
+# "가상화 비용 제약", "비용 절감", "total cost of ownership"). They are a pricing request
+# only when the same clause asks for the amount or names the unit the price is per.
+_PRICING_COST = re.compile(
+    r"(?:비용|costs?)[^\n?!.]{0,15}?"
+    r"(?:얼마(?!나)|몇\s*(?:원|달러|불)|알려|문의|궁금|알고\s*싶|계산|산정|청구|책정|견적|비교"
+    r"|어느\s*정도"
+    # "비용이 얼마나 드나요" asks for the amount; "비용이 얼마나 절감되나요" does not.
+    r"|얼마나\s*(?:되|드|듭|나오|소요|비싸)"
+    r"|어떻게\s*(?:되|받|산정|계산|책정))"
+    # "코어당 비용", "노드당 단가", "cost per core": the unit makes it a price, not background.
+    r"|(?:코어|노드|유저|사용자|계정|서버|소켓|호스트|월|연|시간)\s*(?:당|마다)\s*"
+    r"(?:비용|요금|가격|단가)"
+    r"|costs?\s+per\b"
+    r"|\bper\s+(?:core|node|user|seat|socket|host|month|year)\b[^\n?]{0,25}\b(?:costs?|price|charge)"
+    r"|how\s+much\s+(?:does|do|will|would)\b[^\n?]{0,40}\bcosts?\b"
+    r"|\b(?:what|which)\s+(?:is|are|does|do|'s)\b[^\n?]{0,25}\bcosts?\b"
+    r"|\b(?:unit|list)\s+costs?\b",
+    re.I,
 )
 _PRODUCT_SIGNAL = re.compile(
     r"rhel|red hat|레드햇|리눅스|linux|satellite|새틀라이트|ansible|앤서블|openshift|오픈시프트|insights|"
@@ -41,8 +72,14 @@ class GateResult:
     reason: str | None = None
 
 
+def asks_price(query: str) -> bool:
+    """True when the question asks for a price, discount or quote — not when it merely
+    mentions cost as background ("VMware 비용 때문에 마이그레이션을 검토합니다")."""
+    return bool(_PRICING.search(query) or _PRICING_COST.search(query))
+
+
 def pre_generation(query: str, top_score: float) -> GateResult:
-    if _PRICING.search(query):
+    if asks_price(query):
         return GateResult(False, "pricing")
     if not _PRODUCT_SIGNAL.search(query) and top_score == 0:
         return GateResult(False, "off_domain")
