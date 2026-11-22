@@ -2,7 +2,7 @@
 
 고객의 RHEL 운영 환경과 과제를 체크하면 Red Hat 솔루션 후보, 추천 근거, 대화 시작 스크립트를 제안하는 인터랙티브 영업 지원 데모입니다.
 
-관련 글: [설계·측정 — 공식 문서 RAG 인용 + 30문항 Evals](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals/) · [구현기 — 63.6%에서 시작해 eval로 버그를 잡기까지](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals-build-log/)
+관련 글: [구현기·측정 — 63.6%에서 시작해 eval로 버그를 잡기까지](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals-build-log/)
 
 ## 기능
 
