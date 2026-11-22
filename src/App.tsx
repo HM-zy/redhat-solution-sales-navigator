@@ -16,9 +16,11 @@ import {
   Package
 } from 'lucide-react';
 import RagAssistant from './RagAssistant';
+import MeetingSaveBar from './MeetingSaveBar';
+import type { MeetingRecord } from './excelLog';
 
 type Scale = '' | '<10' | '10-50' | '50+';
-type Version = '' | 'v7' | 'v8' | 'v9';
+type Version = '' | 'v7' | 'v8' | 'v9' | 'none';
 type Automation = '' | 'manual' | 'community' | 'provision' | 'done';
 type Container = '' | 'none' | 'plan' | 'self';
 type YesNo = boolean | null;
@@ -38,6 +40,37 @@ interface Option<T extends string> {
   value: T;
   label: string;
 }
+
+const SCALE_OPTIONS: Option<Exclude<Scale, ''>>[] = [
+  { value: '<10', label: '10대 미만' },
+  { value: '10-50', label: '10 ~ 50대' },
+  { value: '50+', label: '50대 이상' }
+];
+const VERSION_OPTIONS: Option<Exclude<Version, ''>>[] = [
+  { value: 'v7', label: 'RHEL 7 이하' },
+  { value: 'v8', label: 'RHEL 8' },
+  { value: 'v9', label: 'RHEL 9 이상' },
+  { value: 'none', label: '없음' }
+];
+const AUTOMATION_OPTIONS: Option<Exclude<Automation, ''>>[] = [
+  { value: 'manual', label: '수작업·자체 스크립트' },
+  { value: 'community', label: '커뮤니티 Ansible' },
+  { value: 'provision', label: '서버 생성만 자동화' },
+  { value: 'done', label: '서버 안쪽까지 자동화 (AAP 등)' }
+];
+const CONTAINER_OPTIONS: Option<Exclude<Container, ''>>[] = [
+  { value: 'none', label: '사용·계획 없음' },
+  { value: 'plan', label: '이전 계획 있음' },
+  { value: 'self', label: '자체·타사 K8s 운영 중' }
+];
+
+const labelOf = <T extends string>(options: Option<T>[], value: T | '') =>
+  options.find((o) => o.value === value)?.label ?? '';
+
+const todayLocal = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+};
 
 // --- 질문 구성 (총 8개) ---
 // 1 규모 / 2 RHEL 버전 / 3 보유 Red Hat 제품 / 4 패치·보안 / 5 자동화 / 6 컨테이너 / 7 가상화 / 8 갱신
@@ -159,6 +192,10 @@ export default function RedHatSalesNavigator() {
     virt: null,
     renewal: null
   });
+
+  const [customer, setCustomer] = useState('');
+  const [meetingDate, setMeetingDate] = useState(todayLocal);
+  const [memo, setMemo] = useState('');
 
   const setAnswer = (key: YesNoKey, value: boolean) => setAnswers((prev) => ({ ...prev, [key]: value }));
 
@@ -322,7 +359,37 @@ export default function RedHatSalesNavigator() {
   const crossCount = recommendations.filter((r) => r.type === 'Cross-selling').length;
   const upCount = recommendations.filter((r) => r.type === 'Upselling').length;
 
+  const yesNoLabel = (i: number) => {
+    const q = YES_NO_QUESTIONS[i];
+    const v = answers[q.key];
+    return v === null ? '' : v ? q.yes : q.no;
+  };
+
+  const buildRecord = (): MeetingRecord => ({
+    customer,
+    meetingDate,
+    memo,
+    answers: {
+      'RHEL 서버 규모': labelOf(SCALE_OPTIONS, scale),
+      '가장 오래된 RHEL 버전': labelOf(VERSION_OPTIONS, version),
+      '보유 Red Hat 제품': !ownsTouched
+        ? ''
+        : hasAnyOwn
+          ? OWN_OPTIONS.filter((o) => owns[o.key]).map((o) => o.label).join(', ')
+          : '없음',
+      '패치·보안 수작업 부담': yesNoLabel(0),
+      '반복 작업 처리 방식': labelOf(AUTOMATION_OPTIONS, automation),
+      '컨테이너/K8s 현황': labelOf(CONTAINER_OPTIONS, container),
+      '상용 가상화 대안 검토': yesNoLabel(1),
+      '구독 갱신 12개월 이내': yesNoLabel(2)
+    },
+    recommendations: recommendations.map((r) => ({ type: r.type, solution: r.solution }))
+  });
+
   const handleReset = () => {
+    setCustomer('');
+    setMeetingDate(todayLocal());
+    setMemo('');
     setScale('');
     setVersion('');
     setOwns({ satellite: false, aap: false, openshift: false, premium: false });
@@ -339,6 +406,7 @@ export default function RedHatSalesNavigator() {
         <div className="flex items-center gap-3">
           <Layers className="w-6 h-6" />
           <h1 className="text-xl font-bold">Red Hat 솔루션 영업 네비게이터</h1>
+          <span className="text-xs font-semibold bg-white/20 px-2 py-0.5 rounded">v5</span>
         </div>
         <button
           onClick={handleReset}
@@ -348,6 +416,17 @@ export default function RedHatSalesNavigator() {
           초기화
         </button>
       </header>
+
+      <MeetingSaveBar
+        customer={customer}
+        onCustomerChange={setCustomer}
+        meetingDate={meetingDate}
+        onMeetingDateChange={setMeetingDate}
+        memo={memo}
+        onMemoChange={setMemo}
+        answeredCount={answeredCount}
+        buildRecord={buildRecord}
+      />
 
       <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         {/* Left: Discovery questions */}
@@ -367,11 +446,7 @@ export default function RedHatSalesNavigator() {
               label="RHEL 서버 운영 규모"
               value={scale}
               onChange={setScale}
-              options={[
-                { value: '<10', label: '10대 미만' },
-                { value: '10-50', label: '10 ~ 50대' },
-                { value: '50+', label: '50대 이상' }
-              ]}
+              options={SCALE_OPTIONS}
             />
 
             <hr className="border-slate-100" />
@@ -383,11 +458,7 @@ export default function RedHatSalesNavigator() {
               hint="cat /etc/redhat-release 로 확인한 버전 기준 (CentOS 7 등 포함)"
               value={version}
               onChange={setVersion}
-              options={[
-                { value: 'v7', label: 'RHEL 7 이하' },
-                { value: 'v8', label: 'RHEL 8' },
-                { value: 'v9', label: 'RHEL 9 이상' }
-              ]}
+              options={VERSION_OPTIONS}
             />
 
             <hr className="border-slate-100" />
@@ -435,12 +506,7 @@ export default function RedHatSalesNavigator() {
               hint="'서버 생성만 자동화'는 Terraform, CloudFormation 등으로 서버·네트워크만 만들고, 서버 안쪽(패치·설정)은 별도로 관리하는 경우예요"
               value={automation}
               onChange={setAutomation}
-              options={[
-                { value: 'manual', label: '수작업·자체 스크립트' },
-                { value: 'community', label: '커뮤니티 Ansible' },
-                { value: 'provision', label: '서버 생성만 자동화' },
-                { value: 'done', label: '서버 안쪽까지 자동화 (AAP 등)' }
-              ]}
+              options={AUTOMATION_OPTIONS}
             />
 
             <hr className="border-slate-100" />
@@ -452,11 +518,7 @@ export default function RedHatSalesNavigator() {
               hint="OpenShift를 이미 쓰고 있다면 위에서 선택한 대로 추천에서 제외돼요"
               value={container}
               onChange={setContainer}
-              options={[
-                { value: 'none', label: '사용·계획 없음' },
-                { value: 'plan', label: '이전 계획 있음' },
-                { value: 'self', label: '자체·타사 K8s 운영 중' }
-              ]}
+              options={CONTAINER_OPTIONS}
             />
 
             {/* 7. 가상화 / 8. 갱신 */}
@@ -536,10 +598,13 @@ export default function RedHatSalesNavigator() {
           </div>
         </section>
 
-        {/* RAG 어시스턴트: 체크리스트·추천 아래 전체 폭 */}
-        <div className="lg:col-span-2">
-          <RagAssistant />
-        </div>
+        {/* RAG 어시스턴트: 체크리스트·추천 아래 전체 폭.
+            서버 없는 단일 HTML 파일 버전(mode=file)에서는 API 서버가 없으므로 숨긴다 */}
+        {import.meta.env.MODE !== 'file' && (
+          <div className="lg:col-span-2">
+            <RagAssistant />
+          </div>
+        )}
       </main>
     </div>
   );

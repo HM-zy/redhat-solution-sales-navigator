@@ -2,12 +2,15 @@
 
 고객의 RHEL 운영 환경과 과제를 체크하면 Red Hat 솔루션 후보, 추천 근거, 대화 시작 스크립트를 제안하는 인터랙티브 영업 지원 데모입니다.
 
+관련 글: [설계·측정 — 공식 문서 RAG 인용 + 30문항 Evals](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals/) · [구현기 — 63.6%에서 시작해 eval로 버그를 잡기까지](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals-build-log/)
+
 ## 기능
 
 - RHEL 서버 규모 및 운영 관련 8개 질문 (디스커버리 8문항 → 세일즈 플레이 7종)
 - 조건에 따른 Upsell / Cross-sell 솔루션 추천
 - 각 추천의 근거와 한국어 대화 스크립트 표시
 - Red Hat 공식문서 RAG 어시스턴트: 브라우저에서 바로 질문하고 근거 `[doc_id]`와 가드레일 거절 사유 확인
+- 미팅 기록을 로컬 엑셀(`.xlsx`) 한 줄로 저장 (고객사명·미팅 날짜·메모 + 체크 결과·추천 솔루션)
 - 입력 초기화
 
 ## 실행
@@ -19,12 +22,22 @@ npm run dev        # http://localhost:5173
 
 프로덕션 빌드는 `npm run build`로 생성합니다.
 
+```bash
+npm test           # vitest — 엑셀 기록 로직 단위 테스트
+npm run api        # 로컬 RAG API 서버 (rag.server, 포트 8000)
+npm run build:file # 서버 없이 더블클릭으로 여는 단일 HTML (dist-file/sales-navigator.html)
+```
+
+### 엑셀 저장
+
+상단 저장 바에서 고객사명·미팅 날짜·메모를 채우고 체크리스트를 입력한 뒤 **엑셀에 저장**을 누르면, 고른 `.xlsx` 파일의 '미팅 기록' 시트 맨 아래에 한 줄이 추가됩니다. 파일은 [File System Access API](https://developer.mozilla.org/docs/Web/API/File_System_Access_API)로 직접 쓰므로 **Chrome 또는 Edge**에서만 동작하고(그 외 브라우저는 안내 문구만 표시), 서버로 고객 정보가 전송되지 않습니다. 한 번 고른 파일은 브라우저(IndexedDB)에 기억해 다음 미팅에서 그대로 이어 씁니다.
+
 ### RAG 어시스턴트까지 함께 띄우기
 
 화면 아래 'Red Hat 공식문서 RAG 어시스턴트' 카드는 로컬 API 서버(`rag/server.py`, 포트 8000)를 `/api` 프록시로 호출합니다. 터미널 두 개로 실행합니다.
 
 ```bash
-# 터미널 1 — RAG API (표준 라이브러리만 사용, requirements에 추가 패키지 없음)
+# 터미널 1 — RAG API (HTTP 서버·검색·청킹은 표준 라이브러리, 파이프라인 의존성은 anthropic)
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m rag.build_corpus      # 공식문서 최초 1회 수집
 .venv/bin/python -m rag.server            # http://localhost:8000
@@ -37,6 +50,8 @@ npm run dev                               # http://localhost:5173  (→ /api 는
 답변 생성을 쓰려면 터미널 1에서 `export ANTHROPIC_API_KEY=sk-ant-...` 후 서버를 띄웁니다. 키가 없어도 검색과 가드레일 거절(가격·범위 밖)은 그대로 동작하고, 답변이 필요한 질문에만 키 설정 안내가 옵니다.
 
 카드 우측 상단 배지가 서버·코퍼스·API 키 상태를 보여줍니다. 서버가 꺼져 있으면 무엇을 실행해야 하는지 카드 안에 표시되고, 옆의 새로고침 아이콘으로 다시 확인할 수 있습니다.
+
+서버 없이 쓰는 단일 HTML 파일(`npm run build:file`)에는 로컬 API 서버가 없으므로 RAG 카드는 숨겨집니다.
 
 | 엔드포인트 | 요청 | 응답 |
 |---|---|---|
@@ -63,7 +78,7 @@ rag/guardrails.py     사전 차단(가격·범위 밖·근거 부족) / 사후 
 rag/pipeline.py       검색 → 사전 차단 → Claude 호출 → 인용 검증
 rag/server.py         로컬 HTTP API (표준 라이브러리 http.server): GET /api/health, POST /api/ask
 src/RagAssistant.tsx  웹의 RAG 질문 UI (예시 질문, 답변·인용·거절 배지, 검색 청크)
-evals/golden.jsonl    32문항 (답해야 할 23 + 거절해야 할 9)
+evals/golden.jsonl    32문항 (답해야 할 23 + 거절해야 할 9 — 제출용 정리 글의 30문항은 v1·v2 기준, v3에서 가격 회귀 확인 2문항 추가)
 evals/run_eval.py     검색 전용 / live Claude 평가
 tests/test_rag.py     단위 테스트
 tests/test_server.py  로컬 API 테스트 (인덱스·모델·키 상태를 주입, 네트워크 없음)

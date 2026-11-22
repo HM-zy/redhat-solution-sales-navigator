@@ -217,7 +217,7 @@ class RagService:
             }
 
         # The pipeline ran the same search; repeating it here only to carry title/url/score
-        # of each retrieved chunk to the UI (289 chunks, sub-millisecond).
+        # of each retrieved chunk to the UI (sub-millisecond).
         hits = index.search(question, TOP_K)
         if client is None and result.status != "refused":
             return HTTPStatus.SERVICE_UNAVAILABLE, {
