@@ -7,6 +7,9 @@ __pycache__/
 *.pyc
 # Red Hat page text is fetched on demand (python -m rag.build_corpus), not redistributed
 rag/corpus/*.md
-# local meeting log written by the browser (customer names, never committed)
+# personal resume review files, not part of the project
+.hiring-panel/
+# local meeting log with customer names (written by the browser, never committed)
 data/
-dist-file/
+dist-file
+dist-gas

@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "api": ".venv/bin/python -m rag.server",
     "test": "vitest run",
-    "build:file": "tsc -b && vite build --mode file && mv dist-file/index.html dist-file/sales-navigator.html"
+    "build:file": "tsc -b && vite build --mode file && mv dist-file/index.html dist-file/sales-navigator.html",
+    "build:gas": "tsc -b && vite build --mode gas && cp apps-script/Code.gs dist-gas/Code.gs"
   },
   "dependencies": {
     "exceljs": "^4.4.0",

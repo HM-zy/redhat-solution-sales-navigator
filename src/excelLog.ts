@@ -2,26 +2,13 @@
 // 파일 접근은 File System Access API (Chrome·Edge 전용), 엑셀 읽기·쓰기는 exceljs.
 import type { Workbook, Worksheet } from 'exceljs';
 
-export const LOG_SHEET = '미팅 기록';
-
-// 체크리스트 질문 열 (네비게이터 질문 순서). 값은 화면에 보이는 버튼 문구 그대로 저장한다.
-export const QUESTION_COLUMNS = [
-  'RHEL 서버 규모',
-  '가장 오래된 RHEL 버전',
-  '보유 Red Hat 제품',
-  '패치·보안 수작업 부담',
-  '반복 작업 처리 방식',
-  '컨테이너/K8s 현황',
-  '상용 가상화 대안 검토',
-  '구독 갱신 12개월 이내'
-] as const;
-export type QuestionColumn = (typeof QUESTION_COLUMNS)[number];
-
-export const COLUMNS = [
+// 페이지(헬스체크·리뉴얼)마다 질문이 달라서, 기록은 페이지별 시트(탭)에 따로 쌓는다.
+// 질문 열 이름은 화면의 질문 순서대로, 값은 화면에 보이는 버튼 문구 그대로 저장한다.
+export const columnsFor = (questionColumns: readonly string[]) => [
   '저장 일시',
   '고객사명',
   '미팅 날짜',
-  ...QUESTION_COLUMNS,
+  ...questionColumns,
   '추천 솔루션',
   'Upsell 수',
   'Cross-sell 수',
@@ -31,11 +18,13 @@ const WIDTHS: Record<string, number> = { '저장 일시': 18, 고객사명: 22, 
 const WRAP = new Set(['추천 솔루션', '메모']);
 
 export interface MeetingRecord {
+  sheet: string; // 저장할 시트(탭) 이름
+  questionColumns: readonly string[];
   customer: string;
   meetingDate: string;
   memo: string;
-  answers: Record<QuestionColumn, string>;
-  recommendations: { type: 'Upselling' | 'Cross-selling'; solution: string }[];
+  answers: Record<string, string>;
+  recommendations: { type: 'Net-new' | 'Upselling' | 'Cross-selling'; solution: string }[];
 }
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -49,7 +38,7 @@ export function toCells(rec: MeetingRecord, now: Date = new Date()): Record<stri
     '저장 일시': stamp(now),
     고객사명: customer,
     '미팅 날짜': rec.meetingDate,
-    ...rec.answers,
+    ...Object.fromEntries(rec.questionColumns.map((q) => [q, rec.answers[q] ?? ''])),
     '추천 솔루션': rec.recommendations.map((r) => `[${r.type}] ${r.solution}`).join('\n'),
     'Upsell 수': rec.recommendations.filter((r) => r.type === 'Upselling').length,
     'Cross-sell 수': rec.recommendations.filter((r) => r.type === 'Cross-selling').length,
@@ -71,14 +60,19 @@ function styleHeader(ws: Worksheet, header: string[]) {
 }
 
 /** 시트를 찾거나 만들고, 머리글에 없는 열은 오른쪽에 붙인 뒤 한 줄을 추가한다. 추가한 행 번호를 돌려준다. */
-export function appendRecord(wb: Workbook, cells: Record<string, string | number>): number {
-  const ws = wb.getWorksheet(LOG_SHEET) ?? wb.worksheets[0] ?? wb.addWorksheet(LOG_SHEET);
+export function appendRecord(
+  wb: Workbook,
+  sheet: string,
+  columns: readonly string[],
+  cells: Record<string, string | number>
+): number {
+  const ws = wb.getWorksheet(sheet) ?? wb.addWorksheet(sheet);
 
   const header: string[] = [];
   ws.getRow(1).eachCell({ includeEmpty: true }, (cell, col) => {
     header[col - 1] = cell.value == null ? '' : String(cell.value);
   });
-  for (const name of COLUMNS) if (!header.includes(name)) header.push(name);
+  for (const name of columns) if (!header.includes(name)) header.push(name);
   styleHeader(ws, header);
 
   let last = 1;
@@ -95,7 +89,9 @@ export function appendRecord(wb: Workbook, cells: Record<string, string | number
 }
 
 async function loadExcelJS() {
-  return (await import('exceljs')).default; // 저장할 때만 불러온다 (번들이 크다)
+  // 저장할 때만 불러온다 (번들이 크다). Apps Script 빌드에서는 엑셀 저장을 쓰지 않으므로 아예 넣지 않는다.
+  const mod = await (import.meta.env.MODE === 'gas' ? Promise.reject(new Error('엑셀 저장을 쓸 수 없습니다.')) : import('exceljs'));
+  return mod.default;
 }
 
 /** 엑셀 파일 내용(비어 있으면 새 통합 문서)에 기록을 추가하고, 새 파일 내용과 행 번호를 돌려준다. */
@@ -114,7 +110,7 @@ export async function appendToXlsx(
       throw new Error('엑셀 파일(.xlsx)을 읽지 못했습니다. 다른 파일을 선택해 주세요.');
     }
   }
-  const row = appendRecord(wb, cells);
+  const row = appendRecord(wb, rec.sheet, columnsFor(rec.questionColumns), cells);
   const out = await wb.xlsx.writeBuffer();
   return { buffer: out as ArrayBuffer, row };
 }

@@ -1,9 +1,15 @@
 import ExcelJS from 'exceljs';
 import { describe, expect, it } from 'vitest';
-import { appendToXlsx, COLUMNS, LOG_SHEET, QUESTION_COLUMNS, type MeetingRecord } from './excelLog';
+import { appendToXlsx, columnsFor, type MeetingRecord } from './excelLog';
+import { HEALTH_COLUMNS, HEALTH_SHEET } from './healthCheck';
+import { RENEWAL_COLUMNS, RENEWAL_SHEET } from './renewal';
 
-const answers = Object.fromEntries(QUESTION_COLUMNS.map((q) => [q, ''])) as MeetingRecord['answers'];
+const LOG_SHEET = HEALTH_SHEET;
+const COLUMNS = columnsFor(HEALTH_COLUMNS);
+const answers: Record<string, string> = {};
 const REC: MeetingRecord = {
+  sheet: HEALTH_SHEET,
+  questionColumns: HEALTH_COLUMNS,
   customer: ' 테스트고객 ',
   meetingDate: '2026-11-20',
   memo: '',
@@ -15,10 +21,10 @@ const REC: MeetingRecord = {
 };
 const NOW = new Date(2026, 10, 20, 9, 5);
 
-async function rows(buffer: ArrayBuffer) {
+async function rows(buffer: ArrayBuffer, sheet = LOG_SHEET) {
   const wb = new ExcelJS.Workbook();
   await wb.xlsx.load(buffer);
-  const ws = wb.getWorksheet(LOG_SHEET) ?? wb.worksheets[0];
+  const ws = wb.getWorksheet(sheet)!;
   const out: unknown[][] = [];
   ws.eachRow((row) => out.push((row.values as unknown[]).slice(1)));
   return out;
@@ -60,6 +66,26 @@ describe('appendToXlsx', () => {
     expect(new Set(r[0])).toEqual(new Set(COLUMNS));
     expect(r[1][1]).toBe('예전고객');
     expect(r[2][1]).toBe('테스트고객');
+  });
+
+  it('keeps health check and renewal records on separate sheets', async () => {
+    const first = await appendToXlsx(new ArrayBuffer(0), REC, NOW);
+    const renewal: MeetingRecord = {
+      ...REC,
+      sheet: RENEWAL_SHEET,
+      questionColumns: RENEWAL_COLUMNS,
+      customer: '리뉴얼고객',
+      answers: { '현재 지원 등급': '모두 Standard' }
+    };
+    const second = await appendToXlsx(first.buffer, renewal, NOW);
+    expect(second.row).toBe(2);
+    const h = await rows(second.buffer, HEALTH_SHEET);
+    const r = await rows(second.buffer, RENEWAL_SHEET);
+    expect(h.map((x) => x[1])).toEqual(['고객사명', '테스트고객']);
+    expect(r[0]).toEqual(columnsFor(RENEWAL_COLUMNS));
+    expect(r[1][1]).toBe('리뉴얼고객');
+    expect(r[1][r[0].indexOf('현재 지원 등급')]).toBe('모두 Standard');
+    expect(r[0]).not.toContain('RHEL 서버 규모');
   });
 
   it('stores formula-looking text as text', async () => {
