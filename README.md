@@ -4,6 +4,51 @@
 
 관련 글: [구현기·측정 — 63.6%에서 시작해 eval로 버그를 잡기까지](https://hm-zy.github.io/posts/redhat-sales-navigator-rag-evals-build-log/)
 
+## 한눈에 보기
+
+설치나 API 키 없이 이 페이지만 보고도 무엇을 하는지 알 수 있도록, 실제 화면과 측정 결과를 모았습니다.
+
+### 1. 체크리스트에 답하면 추천과 대화 스크립트가 나옵니다
+
+![체크리스트에 답하면 오른쪽에 Upsell / Cross-sell 추천과 한국어 대화 스크립트가 표시되는 화면](docs/images/app.jpg)
+
+고객 환경 질문 8개(서버 규모, RHEL 버전, 패치 부담, 자동화 방식 등)에 답하면 오른쪽에 Upsell / Cross-sell 추천, 추천 근거, 미팅에서 바로 쓸 수 있는 한국어 스크립트가 표시됩니다.
+
+### 2. RAG 어시스턴트는 공식 문서만 근거로 답합니다
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/rag-flow-dark.png">
+  <img alt="질문 → 사전 가드레일 → BM25 검색 → Claude 답변 → 사후 인용 검증 흐름과 eval 결과" src="docs/images/rag-flow.png">
+</picture>
+
+### 3. 실제 답변 예시
+
+eval을 Claude로 실행했을 때 나온 답변 그대로입니다 (`evals/results/v2-live.json`, q01). 문장마다 근거 문서 `[doc_id]`가 붙습니다.
+
+> **Q. RHEL 8, 9, 10은 기본 라이프사이클이 총 몇 년인가요?**
+>
+> RHEL 8, 9, 10의 기본 라이프사이클은 Full Support 및 Maintenance Support 단계를 합쳐 총 10년이며, 그 이후 Extended Life Phase가 이어집니다 [rhel-lifecycle].
+> Extended Life Cycle Premium (ELCP)과 Long-Life (LL) Add-On term extensions를 활용하면, 적격 마이너 릴리스에서 최대 14년(및 그 이상)까지 errata 지원을 받을 수 있습니다 [rhel-lifecycle].
+
+### 4. 가격 질문은 Claude를 부르기 전에 거절합니다
+
+![가격 질문에 가드레일 거절 사유와 검색된 청크가 표시되는 화면](docs/images/rag-refusal.jpg)
+
+공식 문서에는 가격이 없으므로, 가격·할인·견적 질문은 모델을 호출하지 않고 거절합니다. 이 화면은 API 키 없이 찍은 것으로, 거절과 검색은 키 없이도 동작합니다.
+
+### 5. eval 결과 (v2, 30문항)
+
+| 지표 | 결과 |
+|---|---|
+| 정답 문서가 검색 1순위 | 18/22 (81.8%) |
+| 정답 문서가 상위 5개 안 | 22/22 (100%) |
+| 거절해야 할 질문을 거절 | 8/8 (100%) |
+| 답해야 하는데 거절 (과잉 거절) | 2/22 (9.1%) |
+| 인용 무결성 (인용이 실제 근거와 일치) | 19/20 (95%) |
+| 핵심 사실 정확도 | 20/20 (100%) |
+
+63.6%에서 시작해 eval로 버그를 찾아 고친 과정은 위 구현기에 정리했습니다. 지표별 버전 비교는 아래 [RAG 어시스턴트와 eval](#rag-어시스턴트와-eval-python) 절에 있습니다.
+
 ## 기능
 
 - RHEL 서버 규모 및 운영 관련 8개 질문 (디스커버리 8문항 → 세일즈 플레이 7종)
